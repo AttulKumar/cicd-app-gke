@@ -1,26 +1,32 @@
 steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/cicd-app-gke/gke-repo/quickstart-image', './app1' ]
+  id: 'Build Docker Image'
 
-# Step 0
-#docker build the image from httpd public dockerhub Apache image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-central1-docker.pkg.dev/cicd-app-gke/gke-repo/quickstart-image' ]
+  id: 'Push Docker Image'
 
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/my-docker-repo/httpd-image', '.' ]
-
-# Step 1
-#push the previously built image to ythe docker repo created in Step 0
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/my-docker-repo/httpd-image']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/prj-poc-001/gke-repo/flask-image', './app2' ]
+  id: 'Build Docker Image2'
 
 
-# Step 2
-# Publish the release
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'bash'
-    args:
-    - '-c'
-    - > 
-      gcloud deploy releases create release-$BUILD_ID
-      --delivery-pipeline=my-demo-app
-      --region=us-central1
-      --images=my-app-image=us-central1-docker.pkg.dev/$PROJECT_ID/my-docker-repo/httpd-image
-      --source=./
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-central1-docker.pkg.dev/prj-poc-001/gke-repo/flask-image' ]
+  id: 'Push Docker Image2'
+
+
+- name: 'google/cloud-sdk:latest'
+  entrypoint: 'sh'
+  args:
+  - -xe
+  - -c
+  - |
+    gcloud deploy apply --file deploy/pipeline.yaml --region=us-central1
+    gcloud deploy apply --file deploy/dev.yaml --region=us-central1
+    gcloud deploy releases create 'app-release-${SHORT_SHA}' --delivery-pipeline=gke-cicd-pipeline --region=us-central1 --skaffold-file=skaffold.yaml
+
+
+options:
+  logging: CLOUD_LOGGING_ONLY    
