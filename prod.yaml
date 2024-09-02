@@ -1,0 +1,9 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: prod
+  annotations: {}
+  labels: {}
+description: prod
+gke:
+  cluster: projects/plasma-matter-430405-d9/locations/us-central1-c/clusters/prod-cluster-1
