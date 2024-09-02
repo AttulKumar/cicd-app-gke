@@ -1,9 +1,5 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-    args:
-    - -c
-    - 'ls -ltr'
   args: ['build', '-t', 'us-central1-docker.pkg.dev/plasma-matter-430405-d9/cicd-gke/app-image:v1', './app1' ]
   id: 'Build Docker Image'
 
