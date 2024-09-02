@@ -6,4 +6,4 @@ metadata:
   labels: {}
 description: dev
 gke:
-  cluster: projects/<your_project_id>/locations/us-central1-c/clusters/dev-cluster
+  cluster: projects/plasma-matter-430405-d9/locations/us-central1-c/clusters/autopilot-dev-cluster
