@@ -25,7 +25,7 @@ steps:
   - |   
     #gcloud deploy apply --file pipeline.yaml --region=us-central1
     gcloud deploy apply --file dev.yaml --region=us-central1
-    gcloud deploy releases create 'app-release-${SHORT_SHA}' --delivery-pipeline=cicd-app-gke --region=us-central1 --skaffold-file=skaffold.yaml
+    gcloud deploy releases create 'app-release-${SHORT_SHA}' --delivery-pipeline=cicid-app-deploy --region=us-central1 --skaffold-file=skaffold.yaml
 
 
 options:
