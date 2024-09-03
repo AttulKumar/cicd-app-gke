@@ -1,19 +1,19 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/plasma-matter-430405-d9/cicd-gke/app-image:v1', './app1' ]
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/plasma-matter-430405-d9/cicd-gke/app1-image:v1', './app1' ]
   id: 'Build Docker Image'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/plasma-matter-430405-d9/cicd-gke/app-image:v1' ]
+  args: ['push', 'us-central1-docker.pkg.dev/plasma-matter-430405-d9/cicd-gke/app1-image:v1' ]
   id: 'Push Docker Image'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/plasma-matter-430405-d9/gke-repo/flask-image', './app2' ]
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/plasma-matter-430405-d9/cicd-gke/app2-image:v1', './app2' ]
   id: 'Build Docker Image2'
 
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/plasma-matter-430405-d9/gke-repo/flask-image' ]
+  args: ['push', 'us-central1-docker.pkg.dev/plasma-matter-430405-d9/cicd-gke/app2-image:v1' ]
   id: 'Push Docker Image2'
 
 
