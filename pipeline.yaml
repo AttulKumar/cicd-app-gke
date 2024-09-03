@@ -7,12 +7,12 @@ metadata:
 description: cicd delivery pipeline
 serialPipeline:
   stages:
-  - targetId: cicid-app-deploy-target-1
+  - targetId: autopilot-dev-cluster
     # profiles:
     # - dev
   # - targetId: staging
   #   profiles:
   #   - staging
-  - targetId: cicid-app-deploy-target-2
+  - targetId: prod-cluster-1
   #   profiles:
   #   - prod
