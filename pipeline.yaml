@@ -1,18 +1,18 @@
 apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
-  name: cicd-app-gke
+  name: cicid-app-deploy
   labels:
     app: cicd
 description: cicd delivery pipeline
 serialPipeline:
   stages:
-  - targetId: dev
+  - targetId: cicid-app-deploy-target-1
     # profiles:
     # - dev
   # - targetId: staging
   #   profiles:
   #   - staging
-  - targetId: prod
+  - targetId: cicid-app-deploy-target-2
   #   profiles:
   #   - prod
