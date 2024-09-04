@@ -1,14 +1,10 @@
-FROM httpd:latest
+FROM python:3.8
 
-# Just my name who wrote this file
-MAINTAINER Samy
+EXPOSE 8081
+WORKDIR /app2
 
-# Copy your custom index file in the htdocs repo
-COPY ./index.html /usr/local/apache2/htdocs/
+COPY . ./
 
-# To tell docker to expose this port
-EXPOSE 80
+RUN pip install -r requirements.txt
 
-# The Base command, This command should be used to start the container
-# Remember, A Container is a Process.As long as the base process (started by base cmd) is live the Container will be ALIVE.
-CMD ["httpd", "-D", "FOREGROUND"]
+CMD ["python", "app.py"]
