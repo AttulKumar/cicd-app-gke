@@ -2,16 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app1
+  name: app1
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: my-app1
+      app: app1
   template:
     metadata:
       labels:
-        app: my-app1
+        app: app1
     spec:
       containers:
         - name: my-container
@@ -22,10 +22,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service1
+  name: service1
 spec:
   selector:
-    app: my-app1
+    app: app1
   ports:
     - protocol: TCP
       port: 8080
