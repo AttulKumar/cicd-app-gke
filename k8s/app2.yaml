@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app2
+  name: app2
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: my-app2
+      app: app2
   template:
     metadata:
       labels:
-        app: my-app2
+        app: app2
     spec:
       containers:
         - name: flask-container
@@ -23,10 +23,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service1
+  name: service1
 spec:
   selector:
-    app: my-app2
+    app: app2
   ports:
     - protocol: TCP
       port: 8081
