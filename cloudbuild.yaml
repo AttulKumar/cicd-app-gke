@@ -23,7 +23,7 @@ steps:
   - -xe
   - -c
   - |   
-    #gcloud deploy apply --file pipeline.yaml --region=us-central1
+    gcloud deploy apply --file pipeline.yaml --region=us-central1
     
     gcloud deploy apply --file dev.yaml --region=us-central1
     gcloud deploy releases create 'app-release-${SHORT_SHA}' --delivery-pipeline=cicid-app-deploy --region=us-central1 --from-k8s-manifest=./k8s/app1.yaml
